@@ -72,11 +72,10 @@ uint16_t udp_checksum(in_addr_t saddr, \
 
 uint16_t csum_udp(uint16_t *ptr,int nbytes)
 {
-    uint32_t sum;
+    uint32_t sum = 0;
     uint16_t oddbyte;
     uint16_t answer;
 
-    sum=0;
     while(nbytes>1) 
     {
         sum+=*ptr++;
@@ -100,8 +99,8 @@ int main(int argc, char *argv[])
 {
     if(argc != 4)
     {
-        printf("Please according to the following order: ip_src->ip_dst->domain");
-        return false;
+        printf("Please according to the following order: ip_src->ip_dst->domain\n");
+        return 1;
     }
 
     char packet[MAX_PAYLOAD] = {0};
